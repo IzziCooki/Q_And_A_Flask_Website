@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Question{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+        <h1>{{ question.question }}</h1>
+        <p><strong>Answer:</strong> {{ question.answer }}</p>
+        <p><a class="btn btn-primary btn-lg">Asked By: {{ current_user.name }}</a></p>
+        <p><a class="btn btn-primary btn-lg">Answer By: None </a></p>
+      </div>
+
+      {% if current_user.id == question.asker.id  or current_user.admin %}
+      <a href="{{ url_for('main.delete_question', question_id=question.id) }}" class="badge badge-danger">          
+        Delete
+      </a>
+      {% endif %}
+
+{% endblock %}
